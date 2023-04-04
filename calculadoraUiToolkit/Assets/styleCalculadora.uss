@@ -1,0 +1,15 @@
+.botaoSomar {
+    background-color: rgba(128, 54, 0, 255);
+    transition-duration: 500ms;
+}
+
+.botaoSomar:hover {
+    background-color: rgba(111, 102, 102, 0.93);
+    scale: 1.2 1.2;
+    transition-duration: 500ms;
+}
+
+.botaoSomar:active {
+    background-color: rgb(67, 67, 67);
+    scale: 0.8 0.8;
+}

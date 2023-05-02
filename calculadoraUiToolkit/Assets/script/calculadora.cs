@@ -5,35 +5,98 @@ using UnityEngine.UIElements;
 
 public class calculadora : MonoBehaviour
 {
-
-    public UIDocument document;
+    // Declarando as variáveis que serão usadas para armazenar referências aos elementos da interface do usuário
+    public UIDocument document; 
     private Button botaoSomar;
+    private Button botaoSubtrair;
+    private Button botaoMultiplicar;
+    private Button botaoDividir;
     private TextField cx1;
     private TextField cx2;
-    private Label resultadoSoma;
-    // Start is called before the first frame update
+    private Label resultadoOperacao;
+
+    // Método Start é chamado no início do jogo
     void Start()
     {
-        
+        // Obtendo referências aos elementos da interface do usuário usando seus nomes
         cx1 = document.rootVisualElement.Q<TextField>("cx1");
         cx2 = document.rootVisualElement.Q<TextField>("cx2");
         botaoSomar = document.rootVisualElement.Q<Button>("botaoSomar");
-        botaoSomar.RegisterCallback<ClickEvent>(resultado);
-        resultadoSoma = document.rootVisualElement.Q<Label>("resultadoSoma");
+        botaoSubtrair = document.rootVisualElement.Q<Button>("botaoSubtrair");
+        botaoMultiplicar = document.rootVisualElement.Q<Button>("botaoMultiplicar");
+        botaoDividir = document.rootVisualElement.Q<Button>("botaoDividir");
 
+
+        // Registrando uma função para ser chamada quando o botão de soma for clicado
+        botaoSomar.RegisterCallback<ClickEvent>(resultadoSomar);
+        botaoSubtrair.RegisterCallback<ClickEvent>(resultadoSubtrair);
+        botaoMultiplicar.RegisterCallback<ClickEvent>(resultadoMultiplicar);
+        botaoDividir.RegisterCallback<ClickEvent>(resultadoDividir);
+
+
+        // Obtendo referência ao elemento da interface do usuário que exibe o resultado da soma
+        resultadoOperacao = document.rootVisualElement.Q<Label>("resultadoOperacao");
     }
 
-    void resultado(ClickEvent evt)
+    // Função a ser chamada quando o botão de soma for clicado
+    void resultadoSomar(ClickEvent evt)
     {
-            double valor1 = double.Parse(cx1.value);
-            double valor2 = double.Parse(cx2.value);
-            double soma = valor1 + valor2;
-            resultadoSoma.text = soma.ToString();
+        // Obtendo os valores de entrada dos campos de texto e convertendo-os de strings para números de ponto flutuante
+        double valor1 = double.Parse(cx1.value);
+        double valor2 = double.Parse(cx2.value);
+
+        // Calculando a soma dos valores de entrada
+        double soma = valor1 + valor2;
+
+        // Exibindo o resultado da soma na interface do usuário
+        resultadoOperacao.text = soma.ToString();
     }
 
-    // Update is called once per frame
+    void resultadoSubtrair(ClickEvent evt)
+    {
+        // Obtendo os valores de entrada dos campos de texto e convertendo-os de strings para números de ponto flutuante
+        double valor1 = double.Parse(cx1.value);
+        double valor2 = double.Parse(cx2.value);
+
+        // Calculando a soma dos valores de entrada
+        double soma = valor1 - valor2;
+
+        // Exibindo o resultado da soma na interface do usuário
+        resultadoOperacao.text = soma.ToString();
+    }
+
+    void resultadoMultiplicar(ClickEvent evt)
+    {
+        // Obtendo os valores de entrada dos campos de texto e convertendo-os de strings para números de ponto flutuante
+        double valor1 = double.Parse(cx1.value);
+        double valor2 = double.Parse(cx2.value);
+
+        // Calculando a soma dos valores de entrada
+        double soma = valor1 * valor2;
+
+        // Exibindo o resultado da soma na interface do usuário
+        resultadoOperacao.text = soma.ToString();
+    }
+
+    void resultadoDividir(ClickEvent evt)
+    {
+        // Obtendo os valores de entrada dos campos de texto e convertendo-os de strings para números de ponto flutuante
+        double valor1 = double.Parse(cx1.value);
+        double valor2 = double.Parse(cx2.value);
+
+        // Calculando a soma dos valores de entrada
+        double soma = valor1 / valor2;
+
+        // Exibindo o resultado da soma na interface do usuário
+        resultadoOperacao.text = soma.ToString();
+    }
+
+
+
+    // Método Update é chamado uma vez por quadro do jogo, mas não é usado aqui
     void Update()
     {
         
     }
 }
+

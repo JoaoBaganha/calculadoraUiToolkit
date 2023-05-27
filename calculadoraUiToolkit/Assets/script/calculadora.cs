@@ -11,6 +11,7 @@ public class calculadora : MonoBehaviour
     private Button botaoSubtrair;
     private Button botaoMultiplicar;
     private Button botaoDividir;
+    private Button botaoElevar;
     private TextField cx1;
     private TextField cx2;
     private Label resultadoOperacao;
@@ -25,6 +26,8 @@ public class calculadora : MonoBehaviour
         botaoSubtrair = document.rootVisualElement.Q<Button>("botaoSubtrair");
         botaoMultiplicar = document.rootVisualElement.Q<Button>("botaoMultiplicar");
         botaoDividir = document.rootVisualElement.Q<Button>("botaoDividir");
+        botaoElevar = document.rootVisualElement.Q<Button>("botaoElevar");
+
 
 
         // Registrando uma função para ser chamada quando o botão de soma for clicado
@@ -32,6 +35,7 @@ public class calculadora : MonoBehaviour
         botaoSubtrair.RegisterCallback<ClickEvent>(resultadoSubtrair);
         botaoMultiplicar.RegisterCallback<ClickEvent>(resultadoMultiplicar);
         botaoDividir.RegisterCallback<ClickEvent>(resultadoDividir);
+        botaoElevar.RegisterCallback<ClickEvent>(resultadoElevar);
 
 
         // Obtendo referência ao elemento da interface do usuário que exibe o resultado da soma
@@ -91,6 +95,18 @@ public class calculadora : MonoBehaviour
         resultadoOperacao.text = soma.ToString();
     }
 
+    void resultadoElevar(ClickEvent evt)
+    {
+        // Obtendo os valores de entrada dos campos de texto e convertendo-os de strings para números de ponto flutuante
+        float valor1 = float.Parse(cx1.value);
+        float valor2 = float.Parse(cx2.value);
+
+        // Calculando a soma dos valores de entrada
+        float soma = Mathf.Pow(valor1, valor2);
+
+        // Exibindo o resultado da soma na interface do usuário
+        resultadoOperacao.text = soma.ToString();
+    }
 
 
     // Método Update é chamado uma vez por quadro do jogo, mas não é usado aqui

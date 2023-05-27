@@ -12,6 +12,7 @@ public class calculadora : MonoBehaviour
     private Button botaoMultiplicar;
     private Button botaoDividir;
     private Button botaoElevar;
+    private Button _botaoLog;
     private TextField cx1;
     private TextField cx2;
     private Label resultadoOperacao;
@@ -29,6 +30,7 @@ public class calculadora : MonoBehaviour
         botaoElevar = document.rootVisualElement.Q<Button>("botaoElevar");
 
 
+        _botaoLog = document.rootVisualElement.Q<Button>("botaoLog");
 
         // Registrando uma função para ser chamada quando o botão de soma for clicado
         botaoSomar.RegisterCallback<ClickEvent>(resultadoSomar);
@@ -37,6 +39,7 @@ public class calculadora : MonoBehaviour
         botaoDividir.RegisterCallback<ClickEvent>(resultadoDividir);
         botaoElevar.RegisterCallback<ClickEvent>(resultadoElevar);
 
+        _botaoLog.RegisterCallback<ClickEvent>(LogAction);
 
         // Obtendo referência ao elemento da interface do usuário que exibe o resultado da soma
         resultadoOperacao = document.rootVisualElement.Q<Label>("resultadoOperacao");
@@ -110,9 +113,13 @@ public class calculadora : MonoBehaviour
 
 
     // Método Update é chamado uma vez por quadro do jogo, mas não é usado aqui
-    void Update()
+   
+    private void LogAction(ClickEvent evt)
     {
+        float valor1 = float.Parse(cx1.value);
+        float valor2 = float.Parse(cx2.value);
         
+        resultadoOperacao.text = $"Resultado: {System.Math.Round(Mathf.Log(valor1, valor2), 2).ToString()}";
     }
 }
 
